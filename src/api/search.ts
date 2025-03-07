@@ -1,16 +1,5 @@
-'use client'
-import { useSearchParams } from 'next/navigation'
 import data from '@/assets/terms.json'
 import Fuse from 'fuse.js'
-
-export const useSearch = () => {
-  const searchParams = useSearchParams()
-  const title = searchParams.get('search')
-  if (!title) {
-    return data.slice(0, 5).map((item) => ({ item }))
-  }
-  return searchByTitle(title)
-}
 
 export const searchByTitle = (title: string) => {
   const options = {
@@ -21,5 +10,5 @@ export const searchByTitle = (title: string) => {
   }
 
   const fuse = new Fuse(data, options)
-  return fuse.search(title)
+  return fuse.search(title).map(({ item }) => item)
 }

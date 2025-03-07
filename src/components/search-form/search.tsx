@@ -39,13 +39,13 @@ export default function SearchWithSuggestions() {
         {query && (
           <ComboboxOptions className='absolute mt-1 w-full bg-white border rounded-lg shadow-md z-10'>
             {items.length > 0 ? (
-              items.map(({ item }, i) => (
+              items.map((item, i) => (
                 <ComboboxOption
                   key={i}
                   value={item.title}
                   className='cursor-pointer p-2 hover:bg-gray-100'
                 >
-                  {item.title}
+                  {item.title} - {item.translation}
                 </ComboboxOption>
               ))
             ) : (
