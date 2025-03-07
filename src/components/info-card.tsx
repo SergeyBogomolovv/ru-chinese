@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card'
 import { Info } from '@/models/info'
 
 type Props = {

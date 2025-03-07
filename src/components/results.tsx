@@ -1,25 +1,22 @@
 'use client'
-import InfoCard from '@/components/info-card/card'
-import SearchWithSuggestions from '../search-form/search'
+import InfoCard from '@/components/info-card'
 import { useSearchParams } from 'next/navigation'
-import { searchByTitle } from '@/api/search'
+import data from '@/assets/terms.json'
 
-export default function MainSection() {
+export default function Results() {
   const searchParams = useSearchParams()
   const title = searchParams.get('search')
-  const items = searchByTitle(title || '')
+  const item = data.find((item) => item.title === title)
+
   return (
-    <section className='flex flex-col gap-4 max-w-full w-[600px] mx-auto p-4'>
-      <SearchWithSuggestions />
-      {items.length === 0 && (
+    <div className='flex flex-col gap-4'>
+      {!item ? (
         <div className='w-full justify-center text-muted-foreground text-center'>
           <p>Начните поиск по словарю</p>
           <p>開始字典搜尋</p>
         </div>
-      )}
-      {items.map((item, i) => (
+      ) : (
         <InfoCard
-          key={i}
           data={{
             title: item.title,
             description: item.description,
@@ -29,7 +26,7 @@ export default function MainSection() {
             translation: item.translation,
           }}
         />
-      ))}
-    </section>
+      )}
+    </div>
   )
 }
