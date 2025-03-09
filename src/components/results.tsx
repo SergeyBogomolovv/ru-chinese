@@ -6,7 +6,7 @@ import data from '@/assets/terms.json'
 export default function Results() {
   const searchParams = useSearchParams()
   const title = searchParams.get('search')
-  const item = data.find((item) => item.title === title)
+  const item = data.find((item) => item.rusName === title)
 
   return (
     <div className='flex flex-col gap-4'>
@@ -16,16 +16,7 @@ export default function Results() {
           <p>開始字典搜尋</p>
         </div>
       ) : (
-        <InfoCard
-          data={{
-            title: item.title,
-            description: item.description,
-            description_ch: item.description_ch,
-            transcription: item.transcription,
-            image: item.image.replace('/public', ''),
-            translation: item.translation,
-          }}
-        />
+        <InfoCard data={item} />
       )}
     </div>
   )

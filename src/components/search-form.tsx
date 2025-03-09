@@ -42,10 +42,10 @@ export default function SearchWithSuggestions() {
               items.map((item, i) => (
                 <ComboboxOption
                   key={i}
-                  value={item.title}
+                  value={item.rusName}
                   className='cursor-pointer p-2 hover:bg-gray-100'
                 >
-                  {item.title} - {item.translation}
+                  {item.rusName} - {item.chineName}
                 </ComboboxOption>
               ))
             ) : (

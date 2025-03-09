@@ -11,17 +11,23 @@ export default function InfoCard({ data }: Props) {
     <Card>
       <CardHeader>
         <CardTitle>
-          {data.title} - {data.translation}
+          {data.rusName} - {data.chineName}
         </CardTitle>
         <CardDescription className='text-foreground'>
           Транскрипция: {data.transcription}
         </CardDescription>
-        <CardDescription className='text-foreground'>
-          Описание: {data.description} ({data.description_ch})
-        </CardDescription>
+        <CardDescription className='text-foreground'>Описание: {data.value}</CardDescription>
       </CardHeader>
       <CardContent>
-        <Image alt='kustorez' src={data.image} width={500} height={500} className='rounded-lg' />
+        {data.image && (
+          <Image
+            alt={data.rusName}
+            src={`/${data.image}`}
+            width={500}
+            height={500}
+            className='rounded-lg'
+          />
+        )}
       </CardContent>
     </Card>
   )

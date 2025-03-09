@@ -1,12 +1,11 @@
 import { z } from 'zod'
 
 export const infoSchema = z.object({
-  title: z.string(),
-  translation: z.string(),
+  rusName: z.string(),
+  chineName: z.string(),
   transcription: z.string(),
-  description: z.string(),
-  description_ch: z.string(),
-  image: z.string().url(),
+  value: z.string(),
+  image: z.nullable(z.string()),
 })
 
 export type Info = z.infer<typeof infoSchema>

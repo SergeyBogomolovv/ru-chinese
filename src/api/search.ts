@@ -3,7 +3,7 @@ import Fuse from 'fuse.js'
 
 export const searchByTitle = (title: string) => {
   const options = {
-    keys: ['title', 'translation'],
+    keys: ['rusName', 'chineName'],
     threshold: 0.2,
     distance: 100,
     minMatchCharLength: 1,
