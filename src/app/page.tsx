@@ -21,7 +21,7 @@ export default function Home() {
           <Results />
         </Suspense>
         <FeedbackDialog>
-          <Button variant='ghost' className='w-fit mx-auto mt-3' size='lg'>
+          <Button variant='secondary' className='w-fit mx-auto mt-3' size='lg'>
             Есть вопросы? Напишите нам.
           </Button>
         </FeedbackDialog>
