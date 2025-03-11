@@ -3,6 +3,7 @@
 import { PropsWithChildren, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
+import { Input } from '@/components/ui/input'
 import {
   Dialog,
   DialogContent,
@@ -14,12 +15,14 @@ import {
 
 export default function FeedbackDialog({ children }: PropsWithChildren) {
   const [message, setMessage] = useState('')
+  const [email, setEmail] = useState('')
+  const [name, setName] = useState('')
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     const mailtoLink = `mailto:asadulla2016@yandex.ru?subject=${encodeURIComponent(
       'Толковый русско-китайский строительный словарь - Обратная связь',
-    )}&body=${encodeURIComponent(message)}`
+    )}&body=${encodeURIComponent(`Имя: ${name}\nEmail: ${email}\nСообщение: ${message}`)}`
     window.location.href = mailtoLink
   }
 
@@ -32,6 +35,22 @@ export default function FeedbackDialog({ children }: PropsWithChildren) {
           <DialogDescription>Если вы заметили ошибку, сообщите нам</DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className='space-y-4'>
+          <Input
+            type='text'
+            name='name'
+            placeholder='Ваше имя'
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+          <Input
+            type='email'
+            name='email'
+            placeholder='Email для обратной связи'
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
           <Textarea
             name='message'
             placeholder='Ваше сообщение'

@@ -22,7 +22,7 @@ export default function Home() {
         </Suspense>
         <FeedbackDialog>
           <Button variant='ghost' className='w-fit mx-auto mt-3' size='lg'>
-            Что то не так?
+            Есть вопросы? Напишите нам.
           </Button>
         </FeedbackDialog>
       </section>
