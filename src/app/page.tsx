@@ -21,8 +21,9 @@ export default function Home() {
           <Results />
         </Suspense>
         <FeedbackDialog>
-          <Button variant='secondary' className='w-fit mx-auto mt-3' size='lg'>
-            Есть вопросы? Напишите нам. 有什麼問題嗎？寫信給我們
+          <Button variant='secondary' className='w-fit mx-auto mt-3 py-6' size='lg'>
+            Есть вопросы? Напишите нам. <br />
+            有什麼問題嗎？寫信給我們
           </Button>
         </FeedbackDialog>
       </section>
