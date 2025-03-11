@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Combobox, ComboboxInput, ComboboxOptions, ComboboxOption } from '@headlessui/react'
 import { Input } from '@/components/ui/input'
@@ -8,8 +8,16 @@ import { searchByTitle } from '@/api/search'
 export default function SearchWithSuggestions() {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const [query, setQuery] = useState(searchParams.get('search') || '')
+  const searchValue = searchParams.get('search')
+  const [query, setQuery] = useState(searchValue || '')
   const [selectedItem, setSelectedItem] = useState<string | null>(null)
+
+  useEffect(() => {
+    setQuery(searchValue || '')
+    if (!searchValue) {
+      setSelectedItem(null)
+    }
+  }, [searchValue])
 
   const items = searchByTitle(query)
 

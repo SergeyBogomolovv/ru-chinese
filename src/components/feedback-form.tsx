@@ -33,12 +33,13 @@ export default function FeedbackDialog({ children }: PropsWithChildren) {
         <DialogHeader>
           <DialogTitle>Форма обратной связи</DialogTitle>
           <DialogDescription>Если вы заметили ошибку, сообщите нам</DialogDescription>
+          <DialogDescription>如果您發現錯誤，請告訴我們</DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className='space-y-4'>
           <Input
             type='text'
             name='name'
-            placeholder='Ваше имя'
+            placeholder='Ваше имя 你的名字'
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
@@ -46,19 +47,19 @@ export default function FeedbackDialog({ children }: PropsWithChildren) {
           <Input
             type='email'
             name='email'
-            placeholder='Email для обратной связи'
+            placeholder='Email для обратной связи 郵件'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
           <Textarea
             name='message'
-            placeholder='Ваше сообщение'
+            placeholder='Ваше сообщение 您的留言'
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             required
           />
-          <Button type='submit'>Отправить</Button>
+          <Button type='submit'>Отправить 發送訊息</Button>
         </form>
       </DialogContent>
     </Dialog>
