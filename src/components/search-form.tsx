@@ -13,6 +13,7 @@ export default function SearchWithSuggestions() {
   const [query, setQuery] = useState(searchValue || '')
   const [selectedItem, setSelectedItem] = useState<string | null>(null)
   const [items, setItems] = useState<Info[]>([])
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     setQuery(searchValue || '')
@@ -23,7 +24,17 @@ export default function SearchWithSuggestions() {
   }, [searchValue])
 
   useEffect(() => {
-    searchByTitle(query).then(setItems)
+    if (!query) {
+      setItems([])
+      return
+    }
+    setIsLoading(true)
+    const handler = setTimeout(() => {
+      searchByTitle(query)
+        .then(setItems)
+        .finally(() => setIsLoading(false))
+    }, 300)
+    return () => clearTimeout(handler)
   }, [query])
 
   const updateSearchParams = (value: string) => {
@@ -51,7 +62,9 @@ export default function SearchWithSuggestions() {
         />
         {query && (
           <ComboboxOptions className='absolute mt-1 w-full bg-white border rounded-lg shadow-md z-10'>
-            {items.length > 0 ? (
+            {isLoading ? (
+              <div className='p-2 text-gray-500'>Загрузка...</div>
+            ) : items.length > 0 ? (
               items.map((item, i) => (
                 <ComboboxOption
                   key={i}
