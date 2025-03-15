@@ -13,7 +13,11 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog'
 
-export default function FeedbackDialog({ children }: PropsWithChildren) {
+interface Props extends PropsWithChildren {
+  lang: 'ru' | 'zh'
+}
+
+export default function FeedbackDialog({ children, lang }: Props) {
   const [message, setMessage] = useState('')
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
@@ -31,15 +35,16 @@ export default function FeedbackDialog({ children }: PropsWithChildren) {
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Форма обратной связи</DialogTitle>
-          <DialogDescription>Если вы заметили ошибку, сообщите нам</DialogDescription>
-          <DialogDescription>如果您發現錯誤，請告訴我們</DialogDescription>
+          <DialogTitle>{lang === 'ru' ? 'Форма обратной связи' : '回饋表'}</DialogTitle>
+          <DialogDescription>
+            {lang === 'ru' ? 'Если вы заметили ошибку, сообщите нам' : '如果您發現錯誤，請告訴我們'}
+          </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className='space-y-4'>
           <Input
             type='text'
             name='name'
-            placeholder='Ваше имя 你的名字'
+            placeholder={lang === 'ru' ? 'Ваше имя' : '你的名字'}
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
@@ -47,19 +52,19 @@ export default function FeedbackDialog({ children }: PropsWithChildren) {
           <Input
             type='email'
             name='email'
-            placeholder='Email для обратной связи 郵件'
+            placeholder={lang === 'ru' ? 'Email для обратной связи' : '郵件'}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
           <Textarea
             name='message'
-            placeholder='Ваше сообщение 您的留言'
+            placeholder={lang === 'ru' ? 'Ваше сообщение' : '您的留言'}
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             required
           />
-          <Button type='submit'>Отправить 發送訊息</Button>
+          <Button type='submit'>{lang === 'ru' ? 'Отправить' : '發送訊息'}</Button>
         </form>
       </DialogContent>
     </Dialog>

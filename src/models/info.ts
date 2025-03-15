@@ -6,7 +6,7 @@ export const infoSchema = z.object({
   transcription: z.string(),
   value: z.string(),
   image: z.nullable(z.string()),
-  rusDescription: z.nullable(z.string()),
+  rusDescription: z.string(),
 })
 
 export type Info = z.infer<typeof infoSchema>

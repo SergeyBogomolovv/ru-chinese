@@ -5,6 +5,7 @@ import { Combobox, ComboboxInput, ComboboxOptions, ComboboxOption } from '@headl
 import { Input } from '@/components/ui/input'
 import { searchByTitle } from '@/api/search'
 import { Info } from '@/models/info'
+import { Search } from 'lucide-react'
 
 export default function SearchWithSuggestions() {
   const router = useRouter()
@@ -53,12 +54,13 @@ export default function SearchWithSuggestions() {
       }}
     >
       <div className='relative w-full'>
+        <Search className='absolute left-3 top-1/2 -translate-y-1/2 text-gray-500' size={20} />
         <ComboboxInput
           as={Input}
           placeholder='Поиск...'
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          className='w-full'
+          className='w-full pl-10'
         />
         {query && (
           <ComboboxOptions className='absolute mt-1 w-full bg-white border rounded-lg shadow-md z-10'>
