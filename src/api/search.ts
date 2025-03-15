@@ -1,7 +1,8 @@
-import data from '@/assets/terms.json'
+'use server'
 import Fuse from 'fuse.js'
+import data from '@/assets/terms.json'
 
-export const searchByTitle = (title: string) => {
+export const searchByTitle = async (title: string) => {
   const options = {
     keys: ['rusName', 'chineName'],
     threshold: 0.2,

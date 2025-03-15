@@ -16,7 +16,9 @@ export default function InfoCard({ data }: Props) {
         <CardDescription className='text-foreground'>
           Транскрипция: {data.transcription}
         </CardDescription>
-        <CardDescription className='text-foreground'>Описание: {data.value}</CardDescription>
+        <CardDescription className='text-foreground'>
+          Описание: {data.value} - {data.rusDescription}
+        </CardDescription>
       </CardHeader>
       <CardContent>
         {data.image && (

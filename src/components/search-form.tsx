@@ -4,6 +4,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { Combobox, ComboboxInput, ComboboxOptions, ComboboxOption } from '@headlessui/react'
 import { Input } from '@/components/ui/input'
 import { searchByTitle } from '@/api/search'
+import { Info } from '@/models/info'
 
 export default function SearchWithSuggestions() {
   const router = useRouter()
@@ -11,15 +12,19 @@ export default function SearchWithSuggestions() {
   const searchValue = searchParams.get('search')
   const [query, setQuery] = useState(searchValue || '')
   const [selectedItem, setSelectedItem] = useState<string | null>(null)
+  const [items, setItems] = useState<Info[]>([])
 
   useEffect(() => {
     setQuery(searchValue || '')
     if (!searchValue) {
       setSelectedItem(null)
+      setItems([])
     }
   }, [searchValue])
 
-  const items = searchByTitle(query)
+  useEffect(() => {
+    searchByTitle(query).then(setItems)
+  }, [query])
 
   const updateSearchParams = (value: string) => {
     const params = new URLSearchParams()
