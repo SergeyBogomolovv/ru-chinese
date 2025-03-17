@@ -1,8 +1,8 @@
 'use client'
-import Image from 'next/image'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card'
 import { Info } from '@/models/info'
 import { useState } from 'react'
+import { Image } from 'antd'
 
 type Props = {
   data: Info
@@ -21,28 +21,6 @@ export default function InfoCard({ data }: Props) {
         <CardDescription className='text-foreground'>
           Транскрипция: {data.transcription}
         </CardDescription>
-      </CardHeader>
-      <CardContent>
-        {data.image && (
-          <Image
-            alt={data.rusName}
-            src={`/${data.image}`}
-            width={500}
-            height={500}
-            className='rounded-md mx-auto'
-          />
-        )}
-        <CardDescription
-          className='text-foreground mt-2 mb-4 cursor-pointer'
-          onClick={() => {
-            if (data.rusDescription.length > 100) setFullRus(!isFullRus)
-          }}
-        >
-          <b>Описание: </b>
-          {!isFullRus && data.rusDescription.length > 100
-            ? data.rusDescription.slice(0, 100) + '...'
-            : data.rusDescription}
-        </CardDescription>
         <CardDescription
           className='text-foreground cursor-pointer'
           onClick={() => {
@@ -50,7 +28,28 @@ export default function InfoCard({ data }: Props) {
           }}
         >
           <b>描述: </b>
-          {!isFullZh && data.value.length > 100 ? data.value.slice(0, 50) + '...' : data.value}
+          {!isFullZh && data.value.length > 50 ? data.value.slice(0, 50) + '...' : data.value}
+        </CardDescription>
+      </CardHeader>
+      <CardContent className='flex flex-col items-center gap-4'>
+        {data.image && (
+          <Image
+            wrapperClassName='w-full'
+            alt={data.rusName}
+            src={`/${data.image}`}
+            className='rounded-md'
+          />
+        )}
+        <CardDescription
+          className='text-foreground cursor-pointer'
+          onClick={() => {
+            if (data.rusDescription.length > 150) setFullRus(!isFullRus)
+          }}
+        >
+          <b>Описание: </b>
+          {!isFullRus && data.rusDescription.length > 150
+            ? data.rusDescription.slice(0, 150) + '...'
+            : data.rusDescription}
         </CardDescription>
       </CardContent>
     </Card>
