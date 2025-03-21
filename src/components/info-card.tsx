@@ -10,7 +10,6 @@ type Props = {
 
 export default function InfoCard({ data }: Props) {
   const [isFullRus, setFullRus] = useState(false)
-  const [isFullZh, setFullZh] = useState(false)
 
   return (
     <Card className='rounded-md'>
@@ -21,14 +20,9 @@ export default function InfoCard({ data }: Props) {
         <CardDescription className='text-foreground'>
           Транскрипция: {data.transcription}
         </CardDescription>
-        <CardDescription
-          className='text-foreground cursor-pointer'
-          onClick={() => {
-            if (data.value.length > 50) setFullZh(!isFullZh)
-          }}
-        >
+        <CardDescription className='text-foreground'>
           <b>描述: </b>
-          {!isFullZh && data.value.length > 50 ? data.value.slice(0, 50) + '...' : data.value}
+          {data.value}
         </CardDescription>
       </CardHeader>
       <CardContent className='flex flex-col items-center gap-4'>
@@ -40,16 +34,22 @@ export default function InfoCard({ data }: Props) {
             className='rounded-md'
           />
         )}
-        <CardDescription
-          className='text-foreground cursor-pointer'
-          onClick={() => {
-            if (data.rusDescription.length > 150) setFullRus(!isFullRus)
-          }}
-        >
+        <CardDescription className='text-foreground self-start'>
           <b>Описание: </b>
           {!isFullRus && data.rusDescription.length > 150
             ? data.rusDescription.slice(0, 150) + '...'
             : data.rusDescription}
+          {data.rusDescription.length > 150 && (
+            <small
+              onClick={() => {
+                setFullRus(!isFullRus)
+              }}
+              className='text-muted-foreground text-xs cursor-pointer'
+            >
+              {' '}
+              {!isFullRus ? 'Еще' : 'Скрыть'}
+            </small>
+          )}
         </CardDescription>
       </CardContent>
     </Card>
