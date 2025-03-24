@@ -17,10 +17,13 @@ export default function InfoCard({ data }: Props) {
         <CardTitle>
           {data.rusName} - {data.chineName}
         </CardTitle>
-        <CardDescription className='text-foreground'>
-          Транскрипция: {data.transcription}
-          <br />
-          {data.rusTranscription}
+        <CardDescription className='text-foreground flex gap-1.5'>
+          Транскрипция:
+          <span>
+            {data.transcription}
+            <br />
+            {data.rusTranscription}
+          </span>
         </CardDescription>
         <CardDescription className='text-foreground'>
           <b>描述: </b>
