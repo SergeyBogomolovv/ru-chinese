@@ -19,10 +19,9 @@ export default function InfoCard({ data }: Props) {
         </CardTitle>
         <CardDescription className='text-foreground flex gap-1.5'>
           Транскрипция:
-          <span>
-            {data.transcription}
-            <br />
-            {data.rusTranscription}
+          <span className='space-y-1.5'>
+            <p>{data.transcription}</p>
+            <p>{data.rusTranscription}</p>
           </span>
         </CardDescription>
         <CardDescription className='text-foreground'>
